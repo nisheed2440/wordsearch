@@ -1,0 +1,92 @@
+body{text-align:center;}
+#wrapper{
+}
+#frame{
+	border:1px solid #999;
+	float:left;
+}
+#wordlist{
+	margin:10px 20px;
+	float:left;
+	text-align:left;
+}
+.grid-item{
+	float:left;
+	height:25px;
+	width:25px;
+	border:1px solid #999;
+	background-color: #eee;
+	color:#666;
+}
+.letter{
+	font-family: Tahoma,Verdana;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
+	line-height:15pt;
+	padding-top:2px;
+}
+.anchor{clear:both;}
+.noselect{
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+.grid-item.selected{
+	background-color:#FFFFFF;
+	border:1px dotted black;
+}
+.highlighted{
+	background-color:#FFFFEF;
+	border:1px solid #F00;
+	cursor:pointer;
+}
+.show{
+	color:red;
+}
+
+.word{
+	font-family: Tahoma,Verdana;
+	margin:5px;
+	display:block;
+	font-size:16pt;
+	font-weight: bold;
+	color:black;
+}
+.big-word{
+	font-family: Tahoma,Verdana;
+	font-weight: bold;
+	font-size:20pt;
+	color:#999;
+}
+.word.solved{
+	color:#999;
+	text-decoration: line-through;
+}
+.grid-item.solved.h{
+	background-image: url(hl-h.png);
+	background-position: center center;
+}
+.grid-item.solved.v{
+	background-image: url(hl-v.png);
+	background-position: center center;
+}
+.grid-item.solved.da{
+	background-image: url(hl-da.png);
+	background-position: center center;
+}
+.grid-item.solved.dd{
+	background-image: url(hl-dd.png);
+	background-position: center center;
+}
+.grid-item.solved{
+	color:red;
+}
+
+.loading{
+	background-image:url("loader.gif");
+	background-position: center center;
+	background-repeat: no-repeat; 
+}
