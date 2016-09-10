@@ -27,5 +27,5 @@ http://localhost:8080/webpack-dev-server/wordsearch.html
 
 ###To check es6 implementation with tweaks, check
 ```
-http://localhost:8080/webpack-dev-server/wordsearch.html
+http://localhost:8080/webpack-dev-server/index.html
 ```
