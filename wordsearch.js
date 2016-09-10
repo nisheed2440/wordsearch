@@ -4,8 +4,8 @@ $(document).ready(init);
 
 //Customizable options =======================================
 var grid = {
-	x: 20,
-	y: 20
+	x: 11,
+	y: 17
 };
 var wordlist = [
 	"react",
@@ -18,12 +18,9 @@ var wordlist = [
 	"functional",
 	"canvas",
 	"cookies",
-	"jsfoo",
-	"sapientnitro",
 	"webpack",
 	"node",
 	"github",
-	"troublemakers",
 	"backbone",
 	"jquery",
 	"gulp",
@@ -36,7 +33,8 @@ var wordlist = [
 	"immutable",
 	"prototype",
 	"closure",
-	"console"
+	"console",
+	"redux"
 ];
 //============================================================
 
