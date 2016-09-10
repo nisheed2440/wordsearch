@@ -4,7 +4,7 @@ import UTF8 from 'crypto-js/enc-utf8';
 import $ from 'jquery';
 
 function randomArray(arr, count) {
-    var shuffled = arr.slice(0), i = arr.length, min = i - count, temp, index;
+    let shuffled = arr.slice(0), i = arr.length, min = i - count, temp, index;
     while (i-- > min) {
         index = Math.floor((i + 1) * Math.random());
         temp = shuffled[index];
@@ -45,10 +45,10 @@ function gi(x, y) {
 }
 //get grid item by coordinates
 function gic(x, y, gridEl) {
-    var c = $(gridEl).offset();
-    var x = Math.floor((x - c.left) / ($('.grid-item').width() + 2));
-    var y = Math.floor((y - c.top) / ($('.grid-item').height() + 2));
-    return gi(x, y);
+    let c = $(gridEl).offset();
+    let xX = Math.floor((x - c.left) / ($('.grid-item').width() + 2));
+    let yY = Math.floor((y - c.top) / ($('.grid-item').height() + 2));
+    return gi(xX, yY);
 }
 
 export {

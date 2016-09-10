@@ -10,7 +10,7 @@ export default class Word {
         x: 11,
         y: 17
     }, gridEl) {
-        var dir = Math.floor(Math.random() * 4);
+        let dir = Math.floor(Math.random() * 4);
         this.content = word;
         this.coords = [];
         this.id = id;
@@ -74,7 +74,7 @@ export default class Word {
         this.valid = this.place();
     }
     check() {
-        for (var i in this.coords) {
+        for (let i in this.coords) {
             if (!this.coords[i].hasClass('highlighted')) {
                 return false;
             }
@@ -83,23 +83,23 @@ export default class Word {
     }
     solve() {
         $(".word-" + this.id).addClass('solved');
-        for (var i in this.coords) {
+        for (let i in this.coords) {
             this.coords[i].addClass('solved').addClass(this.solveClass);
         }
         this.solved = true;
     }
     place() {
-        var x, y;
-        var valid = false;
-        var reverse = Math.round(Math.random() * .9) == 0;
-        var timeout = 0;
+        let x, y;
+        let valid = false;
+        let reverse = Math.round(Math.random() * .9) == 0;
+        let timeout = 0;
         while (!valid) {
             x = this.minx + Math.floor(Math.random() * (this.maxx - this.minx));
             y = this.miny + Math.floor(Math.random() * (this.maxy - this.miny));
             valid = true;
-            for (var i = 0; i < this.len; i++) {
-                var item = gi(this.addx(x, i), this.addy(y, i));
-                var c = (!reverse) ? this.content.charAt(i) : this.content.charAt(this.len - (i + 1));
+            for (let i = 0; i < this.len; i++) {
+                let item = gi(this.addx(x, i), this.addy(y, i));
+                let c = (!reverse) ? this.content.charAt(i) : this.content.charAt(this.len - (i + 1));
                 if (item.find(".letter").html() != c && item.hasClass('used')) valid = false;
             }
             if (timeout++ > 1000) {
@@ -109,9 +109,9 @@ export default class Word {
             }
         }
         //draw words
-        for (var i = 0; i < this.len; i++) {
-            var item = gi(this.addx(x, i), this.addy(y, i));
-            var c = (!reverse) ? this.content.charAt(i) : this.content.charAt(this.len - (i + 1));
+        for (let i = 0; i < this.len; i++) {
+            let item = gi(this.addx(x, i), this.addy(y, i));
+            let c = (!reverse) ? this.content.charAt(i) : this.content.charAt(this.len - (i + 1));
             item.html(ml(c));
             item.addClass('used');
             this.coords.push(item);
