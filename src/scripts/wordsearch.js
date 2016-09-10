@@ -72,9 +72,7 @@ export default class WordSearch {
             let w = new Word(wordlist[i], i, this.grid, this.gridEl);
             words.push(w);
         }
-        setTimeout(() => {
-            $(this.gridEl).removeClass('loading');
-        }, 100);
+        $(this.gridEl).removeClass('loading');
     }
     gameOver() {
         alert("Puzzle Complete!");

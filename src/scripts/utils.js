@@ -4,7 +4,10 @@ import UTF8 from 'crypto-js/enc-utf8';
 import $ from 'jquery';
 
 function randomArray(arr, count) {
-    let shuffled = arr.slice(0), i = arr.length, min = i - count, temp, index;
+    let shuffled = arr.slice(0),
+        i = arr.length,
+        min = i - count,
+        temp, index;
     while (i-- > min) {
         index = Math.floor((i + 1) * Math.random());
         temp = shuffled[index];
@@ -50,6 +53,24 @@ function gic(x, y, gridEl) {
     let yY = Math.floor((y - c.top) / ($('.grid-item').height() + 2));
     return gi(xX, yY);
 }
+//Add css rule
+function addRule(gridX) {
+    if (isMobile()) {
+        var width = Math.floor((window.innerWidth - 2) / gridX);
+        var css = `.grid-item {width:${width}px;height:${width}px}`,
+            head = document.head || document.getElementsByTagName('head')[0],
+            style = document.createElement('style');
+
+        style.type = 'text/css';
+        style.id = 'test';
+        if (style.styleSheet) {
+            style.styleSheet.cssText = css;
+        } else {
+            style.appendChild(document.createTextNode(css));
+        }
+        head.appendChild(style);
+    }
+}
 
 export {
     isMobile,
@@ -58,5 +79,6 @@ export {
     ml,
     gi,
     gic,
-    randomArray
+    randomArray,
+    addRule
 };

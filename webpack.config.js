@@ -17,7 +17,10 @@ module.exports = {
         loaders: [{
             test: /\.(css|scss)$/,
             loader: ExtractTextPlugin.extract('style', 'css!sass'),
-            include: [path.resolve(__dirname, 'src')]
+            include: [
+                path.resolve(__dirname, 'src'),
+                path.resolve(__dirname, 'node_modules/normalize.css')
+            ]
         }, {
             test: /.jsx?$/,
             loader: 'babel-loader',
@@ -25,10 +28,17 @@ module.exports = {
             query: {
                 presets: ['es2015', 'react']
             }
+        }, {
+            test: /.(png|jpg|gif)$/,
+            loader: 'url-loader',
+            include: [path.resolve(__dirname, 'src')],
+            query: {
+                limit: 1000
+            }
         }]
     },
     plugins: [
-        new ExtractTextPlugin("styles.css"),
-        new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"bundle.vendor.js")
+        new ExtractTextPlugin("bundle.css"),
+        new webpack.optimize.CommonsChunkPlugin( /* chunkName= */ "vendor", /* filename= */ "bundle.vendor.js")
     ]
 };

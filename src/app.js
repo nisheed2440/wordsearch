@@ -1,5 +1,7 @@
 import WordSearch from './scripts/wordsearch';
 import {randomArray} from './scripts/utils';
+import './styles/app.scss';
+
 let wordlist = [
     "react",
     "angular",
