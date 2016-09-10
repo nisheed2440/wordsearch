@@ -8,8 +8,10 @@ import {
     gi,
     gic
 } from './utils';
+
 let wordsNotAdded = 0;
 let words = [];
+let wordlist = [];
 
 export default class WordSearch {
     constructor(gridEl = document.body, wordList = [], gridX = 11, gridY = 17) {
@@ -18,7 +20,7 @@ export default class WordSearch {
             x: gridX,
             y: gridY
         };
-        this.wordList = wordList;
+        wordlist = wordList;
         this.isMobile = isMobile();
         this.selection = false;
         this.alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -51,12 +53,12 @@ export default class WordSearch {
     }
     getWords() {
         //Decrypt any encrypted words here.
-        if (!this.wordList.length) {
+        if (!wordlist.length) {
             $.ajax({
                 url: '',
                 success: (result) => {
                     //Retrieved data
-                    this.wordList = result;
+                    wordlist = result;
                 },
                 error: () => {
                     //Retrieved error
@@ -66,8 +68,8 @@ export default class WordSearch {
     }
     placeWords() {
         //Place words in the grid
-        for (let i in this.wordList) {
-            let w = new Word(this.wordList[i], i, this.grid, this.gridEl);
+        for (let i in wordlist) {
+            let w = new Word(wordlist[i], i, this.grid, this.gridEl);
             words.push(w);
         }
         setTimeout(() => {
@@ -160,7 +162,6 @@ export default class WordSearch {
             if (!words[i].solved) {
                 allSolved = false;
             }
-            console.log(words);
         }
         this.selection = false;
         $('.highlighted').removeClass('highlighted');
