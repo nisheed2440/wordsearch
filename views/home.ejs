@@ -22,7 +22,7 @@
         <% if (!user) { %>
         	<p>Welcome! Please <a href="/login">log in</a>.</p>
         <% } else { %>
-        	<p>Hello, <%= user.username %>. View the <a href="/leaderboard">leaderboard</a>.</p>
+        	<p>Hello, <%= user.displayName %>. View the <a href="/leaderboard">leaderboard</a>.</p>
         <% } %>
 
     <div class="container">

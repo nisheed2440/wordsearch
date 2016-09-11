@@ -4,46 +4,28 @@ var GitHubStrategy = require('passport-github').Strategy;
 var path = require('path');
 var mongoose = require('mongoose');
 var serverController = require('./server/controller.js');
+var constants = require('./constants');
 
 //connect to mongodb
-mongoose.connect('mongodb://localhost:27017/test');
+mongoose.connect(constants.mongodbUrl);
 
-// Configure the github strategy for use by Passport.
-//
-// OAuth 2.0-based strategies require a `verify` function which receives the
-// credential (`accessToken`) for accessing the github API on the user's
-// behalf, along with the user's profile.  The function must invoke `cb`
-// with a user object, which will be set at `req.user` in route handlers after
-// authentication.
 passport.use(new GitHubStrategy({
-  clientID: "e1b7f3ef0671cfb26588",
-  clientSecret: "fcf94dfc0c3e07b49bd14759fa4fc90ea216f686",
-  callbackURL: 'http://localhost:3000/login/github/return'
+  clientID: constants.githubClientId,
+  clientSecret: constants.githubClientSecret,
+  callbackURL: constants.passportCallbackUrl
 },
 function(accessToken, refreshToken, profile, cb) {
-
-  console.log(profile._json.email);
+  var userJson = profile._json;
   serverController.pushUser({
-    name: "Shafeeq",
-    email: profile._json.email
+    githubId: userJson.id,
+    username: userJson.login,
+    name: userJson.name,
+    email: userJson.email,
+    gravatar: userJson.avatar_url
   })
-  // In this example, the user's github profile is supplied as the user
-  // record.  In a production-quality application, the github profile should
-  // be associated with a user record in the application's database, which
-  // allows for account linking and authentication with other identity
-  // providers.
   return cb(null, profile);
 }));
 
-// Configure Passport authenticated session persistence.
-//
-// In order to restore authentication state across HTTP requests, Passport needs
-// to serialize users into and deserialize users out of the session.  In a
-// production-quality application, this would typically be as simple as
-// supplying the user ID when serializing, and querying the user record by ID
-// from the database when deserializing.  However, due to the fact that this
-// example does not have a database, the complete Twitter profile is serialized
-// and deserialized.
 passport.serializeUser(function(user, cb) {
   cb(null, user);
 });
@@ -74,12 +56,11 @@ app.use(passport.session());
 app.get('/',
 function(req, res) {
   res.render('home', { user: req.user });
-  // res.sendFile(path.join(__dirname , 'index.html'));
 });
 
 app.get('/login',
 function(req, res) {
-res.render('login', { user: req.user });
+  res.render('login', { user: req.user });
 });
 
 app.get('/login/github',
@@ -102,6 +83,5 @@ app.get('/leaderboard',function(req,res){
     res.redirect('/login');
   }
 })
-
 
 app.listen(3000);
