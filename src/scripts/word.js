@@ -86,6 +86,7 @@ export default class Word {
         for (let i in this.coords) {
             this.coords[i].addClass('solved').addClass(this.solveClass);
         }
+        $(this.gridEl).trigger('cs'); //content solved
         this.solved = true;
     }
     place() {
@@ -104,7 +105,7 @@ export default class Word {
             }
             if (timeout++ > 1000) {
                 console.log(`!! Can't fit ${this.content}`);
-                $(this.gridEl).trigger('cfc', this.content);
+                $(this.gridEl).trigger('cfc');//cannot fit content event
                 return false;
             }
         }

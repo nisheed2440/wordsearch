@@ -9,7 +9,8 @@ import {
     gic
 } from './utils';
 
-let wordsNotAdded = 0;
+let wordsAdded = 0;
+let wordsSolved = 0;
 let words = [];
 let wordlist = [];
 
@@ -20,17 +21,23 @@ export default class WordSearch {
             x: gridX,
             y: gridY
         };
-        wordlist = wordList;
+        wordlist = wordList; //Decrypt here
+        wordsAdded = wordlist.length;
         this.isMobile = isMobile();
         this.selection = false;
         this.alphabet = "abcdefghijklmnopqrstuvwxyz";
 
         $(this.gridEl).html('').addClass('loading');
         $(this.gridEl).on('cfc', (evt) => {
-            wordsNotAdded++;
+            wordsAdded--;
+        });
+        $(this.gridEl).on('cs', (evt) => {
+            wordsSolved++;
         });
         this.drawGrid();
-        this.placeWords();
+        setTimeout(() => {
+            this.placeWords();
+        }, 500);
     }
     drawGrid() {
         //Draw the grid
@@ -39,17 +46,20 @@ export default class WordSearch {
             for (let x = 0; x < this.grid.x; x++) {
                 let newGridItem = $(`<div unselectable="on" id="grid-item-${x}-${y}" class="noselect grid-item grid-row-item-${x} grid-item-${x}-${y}"></div>`);
                 newGridItem.html(ml(this.alphabet.charAt(Math.random() * 26)));
+                newGridItem.css("visibility", "hidden");
                 newGridRow.append(newGridItem);
             }
             newGridRow.append('<div class="anchor"></div>');
             $(this.gridEl).append(newGridRow);
         }
+        $(this.gridEl).append('<div class="anchor"></div>');
+        $(this.gridEl).append('<button class="grid-submit" type="button">submit</button>');
         if (this.isMobile) {
             this.gridEl.addEventListener('touchstart', this.onGridItemTouchStart.bind(this));
             this.gridEl.addEventListener('touchmove', this.onGridItemTouchMove.bind(this));
             this.gridEl.addEventListener('touchend', this.onGridItemTouchEnd.bind(this));
+            this.gridEl.querySelector('.grid-submit').addEventListener('touchstart', this.onGridSubmit.bind(this));
         }
-        $(this.gridEl).append('<div class="anchor"></div>');
     }
     getWords() {
         //Decrypt any encrypted words here.
@@ -73,6 +83,7 @@ export default class WordSearch {
             words.push(w);
         }
         $(this.gridEl).removeClass('loading');
+        $(".grid-item").css("visibility", "visible");
     }
     gameOver() {
         alert("Puzzle Complete!");
@@ -169,5 +180,14 @@ export default class WordSearch {
 
         evt.preventDefault();
         return false;
+    }
+    onGridSubmit(evt) {
+        evt.preventDefault();
+        var encWordsAdded = encrypt(wordsAdded.toString());
+        var encWordsSolved = encrypt(wordsSolved.toString());
+        var decWordsAdded = decrypt(encWordsAdded);
+        var decWordsSolved = decrypt(encWordsSolved);
+        console.log(encWordsAdded, encWordsSolved);
+        console.log(decWordsAdded, decWordsSolved);
     }
 };

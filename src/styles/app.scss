@@ -111,6 +111,17 @@ body * {
     background-color: #000;
 }
 
+.grid-submit {
+    width: 100%;
+    font-family: Tahoma, Verdana;
+    color:white;
+    background: #666;
+    border: none;
+    cursor:pointer;
+    text-transform: uppercase;
+    padding: 5px;
+}
+
 .loading {
     background-image: url("../assets/loader.gif");
     background-position: center center;
