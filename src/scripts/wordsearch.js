@@ -162,9 +162,9 @@ export default class WordSearch {
         let e = evt.touches[0];
         let allSolved = true;
         for (let i in words) {
-            if (words[i].check() && this.selection.dist === words[i].len) {
+            if (words[i].check() && words[i].valid && this.selection.dist === words[i].len) {
                 words[i].solve();
-                wordsSolved[words[i].content] = true;
+                wordsSolved[words[i].id] = true;
             }
             if (!words[i].solved) {
                 allSolved = false;
@@ -182,7 +182,7 @@ export default class WordSearch {
     onGridSubmit(evt) {
         evt.preventDefault();
         var encWordsAdded = encrypt(wordsAdded.toString());
-        var encWordsSolved = encrypt(Object.keys(wordsSolved).length.toString());//encrypt(wordsSolved.toString());
+        var encWordsSolved = encrypt(Object.keys(wordsSolved).length.toString());
         var decWordsAdded = decrypt(encWordsAdded);
         var decWordsSolved = decrypt(encWordsSolved);
         console.log(encWordsAdded, encWordsSolved);
