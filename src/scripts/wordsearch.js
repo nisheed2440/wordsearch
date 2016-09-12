@@ -10,7 +10,7 @@ import {
 } from './utils';
 
 let wordsAdded = 0;
-let wordsSolved = 0;
+let wordsSolved = {};
 let words = [];
 let wordlist = [];
 
@@ -30,9 +30,6 @@ export default class WordSearch {
         $(this.gridEl).html('').addClass('loading');
         $(this.gridEl).on('cfc', (evt) => {
             wordsAdded--;
-        });
-        $(this.gridEl).on('cs', (evt) => {
-            wordsSolved++;
         });
         this.drawGrid();
         setTimeout(() => {
@@ -167,6 +164,7 @@ export default class WordSearch {
         for (let i in words) {
             if (words[i].check() && this.selection.dist === words[i].len) {
                 words[i].solve();
+                wordsSolved[words[i].content] = true;
             }
             if (!words[i].solved) {
                 allSolved = false;
@@ -184,7 +182,7 @@ export default class WordSearch {
     onGridSubmit(evt) {
         evt.preventDefault();
         var encWordsAdded = encrypt(wordsAdded.toString());
-        var encWordsSolved = encrypt(wordsSolved.toString());
+        var encWordsSolved = encrypt(Object.keys(wordsSolved).length.toString());//encrypt(wordsSolved.toString());
         var decWordsAdded = decrypt(encWordsAdded);
         var decWordsSolved = decrypt(encWordsSolved);
         console.log(encWordsAdded, encWordsSolved);

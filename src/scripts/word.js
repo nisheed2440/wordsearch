@@ -82,17 +82,15 @@ export default class Word {
         return true;
     }
     solve() {
-        $(".word-" + this.id).addClass('solved');
         for (let i in this.coords) {
             this.coords[i].addClass('solved').addClass(this.solveClass);
         }
-        $(this.gridEl).trigger('cs'); //content solved
         this.solved = true;
     }
     place() {
         let x, y;
         let valid = false;
-        let reverse = Math.round(Math.random() * .9) == 0;
+        let reverse = Math.round(Math.random() * .9) == 0; //Make this false to always allow ltr reading.
         let timeout = 0;
         while (!valid) {
             x = this.minx + Math.floor(Math.random() * (this.maxx - this.minx));
@@ -105,7 +103,7 @@ export default class Word {
             }
             if (timeout++ > 1000) {
                 console.log(`!! Can't fit ${this.content}`);
-                $(this.gridEl).trigger('cfc');//cannot fit content event
+                $(this.gridEl).trigger('cfc'); //cannot fit content event
                 return false;
             }
         }
