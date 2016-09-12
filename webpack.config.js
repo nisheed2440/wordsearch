@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var autoprefixer = require('autoprefixer');
 
 module.exports = {
     // configuration
@@ -16,7 +17,7 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.(css|scss)$/,
-            loader: ExtractTextPlugin.extract('style', 'css!sass'),
+            loader: ExtractTextPlugin.extract('style', 'css!postcss-loader!sass'),
             include: [
                 path.resolve(__dirname, 'src'),
                 path.resolve(__dirname, 'node_modules/normalize.css')
@@ -36,6 +37,9 @@ module.exports = {
                 limit: 1000
             }
         }]
+    },
+    postcss: function () {
+        return [autoprefixer];
     },
     plugins: [
         new ExtractTextPlugin("bundle.css"),
