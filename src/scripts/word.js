@@ -91,7 +91,7 @@ export default class Word {
     place() {
         let x, y;
         let valid = false;
-        let reverse = Math.round(Math.random() * .9) == 0;
+        let reverse = Math.round(Math.random() * .9) == 0; //Mark this as false to have ltr words
         let timeout = 0;
         while (!valid) {
             x = this.minx + Math.floor(Math.random() * (this.maxx - this.minx));
@@ -104,7 +104,7 @@ export default class Word {
             }
             if (timeout++ > 1000) {
                 console.log(`!! Can't fit ${this.content}`);
-                $(this.gridEl).trigger('cfc', this.content);
+                $(this.gridEl).trigger('cfc');//cannot fit content event
                 return false;
             }
         }

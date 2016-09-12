@@ -48,7 +48,7 @@ function init() {
 	$("#wordlist").hide().html("<div class='big-word'>Words to find:</div>");
 	$("#frame").html("").addClass("loading");
 	drawGrid();
-	setTimeout("placeWords()", 50);
+	setTimeout("placeWords()", 500);
 }
 
 function placeWords() {
