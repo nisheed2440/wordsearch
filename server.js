@@ -135,3 +135,4 @@ app.get('/leaderboard', function(req, res) {
 })
 
 app.listen(3000);
+console.log("Application running on port 3000");
