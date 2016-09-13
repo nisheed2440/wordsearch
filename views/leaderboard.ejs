@@ -1,1 +1,26 @@
-<div>You leaderboard</div><p> <%= user.username %>.</p>
+<div>You leaderboard</div>
+<table class="table-leaderboard">
+<thead>
+	<td> Rank </td>
+	<td> User </td>
+	<td> Score </td>
+	<td>&nbsp;</td>
+</thead>
+<%
+	if (users) {
+		for(var i=0, j=1; i<users.length; i++) {
+		if ((i > 0) && (users[i].score !== users[i-1].score)) {
+			j = i+1;
+		}
+%>
+<tr>
+	<td> <%= j %> </td>
+	<td> <%= users[i].username %> </td>
+	<td> <%= users[i].stats.score %> </td>
+	<td> <img src="<%= users[i].gravatar %>" width="64px" height="64px"> </td>
+</tr>
+<%
+	}
+}
+%>
+</table>

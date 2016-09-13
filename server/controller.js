@@ -18,3 +18,12 @@ module.exports.pushUser = function(req, res){
         }
     });
 };
+
+//
+module.exports.showLeaderBoard = function(req, res) {
+    userModel.find({
+        stats: { score }
+    }, function(err, docs) {
+        res.render('leaderboard', { users: docs });
+    });
+}

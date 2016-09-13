@@ -21,7 +21,12 @@ function(accessToken, refreshToken, profile, cb) {
     username: userJson.login,
     name: userJson.name,
     email: userJson.email,
-    gravatar: userJson.avatar_url
+    gravatar: userJson.avatar_url,
+    stats: {
+        score: 0,
+        lastPlayed: Date().now,
+        submitted: Date().now
+    }
   })
   return cb(null, profile);
 }));
@@ -72,16 +77,12 @@ function(req, res) {
   res.redirect('/');
 });
 
+// show the leaderboard
+app.get('/leaderboard',function(req,res){
+    serverController.showLeaderBoard(req, res);
+});
+
 //Server static build files
 app.use(express.static('build'));
-
-app.get('/leaderboard',function(req,res){
-  if(req.user){
-    res.render('leaderboard', { user: req.user });
-  }
-  else{
-    res.redirect('/login');
-  }
-})
 
 app.listen(3000);

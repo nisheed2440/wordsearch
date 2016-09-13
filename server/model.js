@@ -6,7 +6,12 @@ var userSchema = new mongoose.Schema(
     username: String,
   	name : String,
     email: String,
-    gravatar: String
+    gravatar: String,
+    stats: {
+        score: { type: Number, default: 0 },
+        lastPlayed: { type: Date, default: Date.now },
+        submitted: { type: Date, default: Date.now }
+    }
   }
 );
 
