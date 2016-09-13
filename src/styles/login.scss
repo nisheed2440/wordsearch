@@ -1,0 +1,81 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    padding-top: 50px;
+    h1 {
+        font-family: 'SapientSansLight';
+        font-size: 24px;
+        line-height: 1;
+        text-transform: uppercase;
+        color: #FFF;
+        font-weight: normal;
+        margin: 50px auto;
+        letter-spacing: 1px;
+        flex-shrink: 0;
+        text-align: center;
+    }
+}
+
+.login-logo {
+    width: 112px;
+    height: 79px;
+    background: url('../assets/logo.png') transparent no-repeat center center;
+    flex-shrink: 0;
+    &.final{
+         margin-bottom: 65px;
+    }
+}
+
+.login-btn {
+    text-align: center;
+    flex-shrink: 0;
+    margin-bottom: 65px;
+    &.final{
+        margin-bottom: 30px;
+    }
+}
+
+.login-btn-github,
+.login-btn-google {
+    display: inline-block;
+    border-radius: 3px;
+    color: #d72d2e;
+    background-color: #FFF;
+    padding: 10px 24px;
+    text-decoration: none;
+    margin-bottom: 16px;
+    min-width: 277px;
+    @include font-sans-light;
+    font-size: 20px;
+    line-height: 36px;
+    height: 56px;
+    @extend .z-depth-1;
+}
+
+.login-btn-play {
+    @include font-sans-medium;
+    border-radius: 3px;
+    display: inline-block;
+    color: #d72d2e;
+    background-color: #FFF;
+    padding: 15px;
+    font-size: 12px;
+    text-transform: uppercase;
+    width: 160px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    @extend .z-depth-1;
+}
+
+.login-btn-github {
+    padding-left: 78px;
+    background: url('../assets/github-login.png') #FFF no-repeat 24px 5px;
+}
+
+.login-btn-google {
+    padding-left: 78px;
+    background: url('../assets/google-login.png') #FFF no-repeat 34px 16px;
+}

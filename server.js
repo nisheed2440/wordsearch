@@ -84,6 +84,9 @@ app.use(passport.session());
 // Define routes.
 app.get('/',
   function(req, res) {
+    if (!req.user) {
+      res.redirect('/login');
+    }
     res.render('home', {
       user: req.user,
       words: serverController.wordlist
@@ -95,6 +98,11 @@ app.get('/login',
     res.render('login', {
       user: req.user
     });
+  });
+  
+app.get('/final',
+  function(req, res) {
+    res.render('final', {});
   });
 
 app.get('/login/github',

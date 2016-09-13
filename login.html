@@ -7,19 +7,23 @@
 <!--<![endif]-->
 
 <head>
-  <% include ./partials/header %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="/bundle.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
     <div class="login">
         <div class="flex"></div>
         <div class="login-logo"></div>
         <div class="flex"></div>
         <h1>Enter the spot</h1>
-        <% if (!user) { %>
         <div class="login-btn">
             <div>
                 <a href="/login/google" class="login-btn-google">Sign up with Google</a>
@@ -27,17 +31,14 @@
             <div>
                 <a href="/login/github" class="login-btn-github">Sign up with Github</a>
             </div>
+             <div>
+                <a href="/" class="login-btn-play">Play the<br/>Game</a>
+            </div>
+            <div>
+                <a href="/login/google" class="login-btn-play">View the<br/>Leaderboard</a>
+            </div>
         </div>
-        <% } else { %>
-        <div class="login-btn">
-          <div>
-            <a href="/" class="login-btn-play">Play the<br/> Game</a>
-          </div>
-          <div>
-            <a href="/leaderboard" class="login-btn-play">View the<br/>Leaderboard</a>
-          </div>
-        </div>
-        <% } %>
     </div>
 </body>
+
 </html>

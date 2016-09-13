@@ -1,0 +1,38 @@
+@font-face {
+	font-family: 'SapientSansLight';
+	src: url('../assets/fonts/SapientSansLight/SapientSansLight.eot');
+	src: url('../assets/fonts/SapientSansLight/SapientSansLight.eot?#iefix') format('embedded-opentype'),
+		url('../assets/fonts/SapientSansLight/SapientSansLight.woff2') format('woff2'),
+		url('../assets/fonts/SapientSansLight/SapientSansLight.woff') format('woff'),
+		url('../assets/fonts/SapientSansLight/SapientSansLight.ttf') format('truetype'),
+		url('../assets/fonts/SapientSansLight/SapientSansLight.svg#SapientSansLight') format('svg');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'SapientSansMedium';
+	src: url('../assets/fonts/SapientSansMedium/SapientSansMedium.eot');
+	src: url('../assets/fonts/SapientSansMedium/SapientSansMedium.eot?#iefix') format('embedded-opentype'),
+		url('../assets/fonts/SapientSansMedium/SapientSansMedium.woff2') format('woff2'),
+		url('../assets/fonts/SapientSansMedium/SapientSansMedium.woff') format('woff'),
+		url('../assets/fonts/SapientSansMedium/SapientSansMedium.ttf') format('truetype'),
+		url('../assets/fonts/SapientSansMedium/SapientSansMedium.svg#SapientSansMedium') format('svg');
+	font-weight: 500;
+	font-style: normal;
+}
+
+
+$font-sans-light: SapientSansLight,"Helvetica Neue",Helvetica,Arial,sans-serif;
+$font-sans-medium: SapientSansMedium,"Helvetica Neue",Helvetica,Arial,sans-serif;
+
+@mixin font-sans-light{
+    font-family: $font-sans-light;
+    font-weight: 400;
+    font-style: normal;
+}
+@mixin font-sans-medium{
+    font-family: $font-sans-medium;
+    font-weight: 400;
+    font-style: normal;
+}

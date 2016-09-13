@@ -7,37 +7,29 @@
 <!--<![endif]-->
 
 <head>
-  <% include ./partials/header %>
+    <% include ./partials/header %>
 </head>
 
 <body>
-  <!--[if lt IE 7]>
+    <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
     <div class="login">
         <div class="flex"></div>
-        <div class="login-logo"></div>
+        <h1>Thanks for<br>playing</h1>
         <div class="flex"></div>
-        <h1>Enter the spot</h1>
-        <% if (!user) { %>
-        <div class="login-btn">
+        <div class="login-btn final">
             <div>
-                <a href="/login/google" class="login-btn-google">Sign up with Google</a>
+                <a href="/" class="login-btn-play">Play the<br/>Game</a>
             </div>
             <div>
-                <a href="/login/github" class="login-btn-github">Sign up with Github</a>
+                <a href="/leaderboard" class="login-btn-play">View the<br/>Leaderboard</a>
             </div>
         </div>
-        <% } else { %>
-        <div class="login-btn">
-          <div>
-            <a href="/" class="login-btn-play">Play the<br/> Game</a>
-          </div>
-          <div>
-            <a href="/leaderboard" class="login-btn-play">View the<br/>Leaderboard</a>
-          </div>
-        </div>
-        <% } %>
+        <div class="flex"></div>
+        <div class="login-logo final"></div>
+        <div class="flex"></div>
     </div>
 </body>
+
 </html>

@@ -30,7 +30,7 @@ module.exports = {
                 presets: ['es2015', 'react']
             }
         }, {
-            test: /.(png|jpg|gif)$/,
+            test: /.(png|jpg|gif|woff|woff2|eot|svg|ttf)$/,
             loader: 'url-loader',
             include: [path.resolve(__dirname, 'src')],
             query: {

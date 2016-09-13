@@ -23,9 +23,9 @@ export default class WordSearch {
             y: gridY
         };
         cypher = wordList[0];
-        wordList = randomArray(wordList.slice(1, wordList.length),20);
+        wordList = randomArray(wordList.slice(1, wordList.length), 20);
         //Decrypt here
-        for (var i = 0; i < wordList.length; i++) {
+        for (let i = 0; i < wordList.length; i++) {
             wordlist.push(decrypt(wordList[i], cypher));
         }
         wordsAdded = wordlist.length;
@@ -38,6 +38,8 @@ export default class WordSearch {
             wordsAdded--;
         });
         this.drawGrid();
+        this.startTime = (new Date()).getTime();
+        this.startTimer();
         setTimeout(() => {
             this.placeWords();
         }, 500);
@@ -56,12 +58,12 @@ export default class WordSearch {
             $(this.gridEl).append(newGridRow);
         }
         $(this.gridEl).append('<div class="anchor"></div>');
-        $(this.gridEl).append('<button class="grid-submit" type="button">submit</button>');
+        $('.game-footer').append('<button class="grid-submit flex" type="button" disabled="">submit</button>');
         if (this.isMobile) {
             this.gridEl.addEventListener('touchstart', this.onGridItemTouchStart.bind(this));
             this.gridEl.addEventListener('touchmove', this.onGridItemTouchMove.bind(this));
             this.gridEl.addEventListener('touchend', this.onGridItemTouchEnd.bind(this));
-            this.gridEl.querySelector('.grid-submit').addEventListener('touchstart', this.onGridSubmit.bind(this));
+            document.querySelector('.grid-submit').addEventListener('touchstart', this.onGridSubmit.bind(this));
         }
     }
     getWords() {
@@ -171,6 +173,10 @@ export default class WordSearch {
             if (words[i].check() && words[i].valid && this.selection.dist === words[i].len) {
                 words[i].solve();
                 wordsSolved[words[i].id] = true;
+                //Minimum 5 words
+                if (Object.keys(wordsSolved).length >= 5) {
+                    document.querySelector('.grid-submit').disabled = false;
+                }
             }
             if (!words[i].solved) {
                 allSolved = false;
@@ -187,11 +193,37 @@ export default class WordSearch {
     }
     onGridSubmit(evt) {
         evt.preventDefault();
-        var encWordsAdded = encrypt(wordsAdded.toString());
-        var encWordsSolved = encrypt(Object.keys(wordsSolved).length.toString());
-        var decWordsAdded = decrypt(encWordsAdded);
-        var decWordsSolved = decrypt(encWordsSolved);
-        console.log(encWordsAdded, encWordsSolved);
-        console.log(decWordsAdded, decWordsSolved);
+        if (!evt.target.disabled) {
+            let encWordsAdded = encrypt(wordsAdded.toString(), cypher);
+            let encWordsSolved = encrypt(Object.keys(wordsSolved).length.toString(), cypher);
+            //Ajax to the backend goes here 
+            console.log(encWordsAdded, encWordsSolved, this.startTime, (new Date()).getTime() /* End Time */ );
+            //On Ajax success redirect
+            window.location.href = '/final';
+        } else {
+            alert('You need to solve at least five words before submitting');
+        }
+    }
+    startTimer() {
+        let totalSeconds = 0;
+        setInterval(countTimer, 1000);
+
+        function countTimer() {
+            ++totalSeconds;
+            let hour = pad(Math.floor(totalSeconds / 3600));
+            let minute = pad(Math.floor((totalSeconds - hour * 3600) / 60));
+            let seconds = pad(totalSeconds - (hour * 3600 + minute * 60));
+
+            document.querySelector('.game-timer').innerHTML = hour + ":" + minute + ":" + seconds;
+        }
+
+        function pad(val) {
+            let valString = val + "";
+            if (valString.length < 2) {
+                return "0" + valString;
+            } else {
+                return valString;
+            }
+        }
     }
 };

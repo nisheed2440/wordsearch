@@ -16,20 +16,24 @@
 
 <body>
     <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <script type="text/javascript">
-        var wordsearch = <%- JSON.stringify(words) %>;
-        </script>
-
-        <% if (!user) { %>
-        	<p>Welcome! Please <a href="/login">log in</a>.</p>
-        <% } else { %>
-        	<p>Hello,<%= user.displayName || user.username%>. View the <a href="/leaderboard">leaderboard</a>.</p>
-        <% } %>
-
-    <div class="container">
-        <div id="frame"></div>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <script type="text/javascript">
+    var wordsearch = <%- JSON.stringify(words) %>;
+    </script>
+    <div class="game">
+        <div class="game-header">
+            <div class="game-user flex">
+                <span>Hi, <%= user.displayName || user.username%></span>
+            </div>
+            <div class="game-timer">00:00:00</div>
+        </div>
+        <div class="game-body flex">
+            <div class="container">
+                <div id="frame"></div>
+            </div>
+        </div>
+        <div class="game-footer"></div>
     </div>
     <script src="/bundle.vendor.js"></script>
     <script src="/bundle.app.js"></script>
