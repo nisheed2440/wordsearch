@@ -21,20 +21,16 @@ function isMobile() {
     return (window.navigator.userAgent.match(/iPad|iPhone|android/i) != null);
 }
 
-function cypher() {
-    return SHA1('&copy;SapientNitro' + new Date().getFullYear()).toString();
-}
-
-function encrypt(word) {
+function encrypt(word, cypher) {
     if (typeof word === 'string') {
-        word = AES.encrypt(word, cypher()).toString();
+        word = AES.encrypt(word, cypher).toString();
     }
     return word;
 }
 
-function decrypt(word) {
+function decrypt(word, cypher) {
     if (typeof word === 'string') {
-        word = AES.decrypt(word, cypher()).toString(UTF8);
+        word = AES.decrypt(word, cypher).toString(UTF8);
     }
     return word;
 }

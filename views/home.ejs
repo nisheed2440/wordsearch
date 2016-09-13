@@ -18,11 +18,14 @@
     <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+        <script type="text/javascript">
+        var wordsearch = <%- JSON.stringify(words) %>;
+        </script>
 
         <% if (!user) { %>
         	<p>Welcome! Please <a href="/login">log in</a>.</p>
         <% } else { %>
-        	<p>Hello, <%= user.displayName %>. View the <a href="/leaderboard">leaderboard</a>.</p>
+        	<p>Hello,<%= user.displayName || user.username%>. View the <a href="/leaderboard">leaderboard</a>.</p>
         <% } %>
 
     <div class="container">

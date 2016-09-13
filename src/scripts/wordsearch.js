@@ -4,6 +4,7 @@ import {
     isMobile,
     encrypt,
     decrypt,
+    randomArray,
     ml,
     gi,
     gic
@@ -13,7 +14,7 @@ let wordsAdded = 0;
 let wordsSolved = {};
 let words = [];
 let wordlist = [];
-
+let cypher = '';
 export default class WordSearch {
     constructor(gridEl = document.body, wordList = [], gridX = 11, gridY = 17) {
         this.gridEl = gridEl;
@@ -21,7 +22,12 @@ export default class WordSearch {
             x: gridX,
             y: gridY
         };
-        wordlist = wordList; //Decrypt here
+        cypher = wordList[0];
+        wordList = randomArray(wordList.slice(1, wordList.length),20);
+        //Decrypt here
+        for (var i = 0; i < wordList.length; i++) {
+            wordlist.push(decrypt(wordList[i], cypher));
+        }
         wordsAdded = wordlist.length;
         this.isMobile = isMobile();
         this.selection = false;

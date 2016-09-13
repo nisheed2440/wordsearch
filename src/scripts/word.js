@@ -82,7 +82,6 @@ export default class Word {
         return true;
     }
     solve() {
-        $(".word-" + this.id).addClass('solved');
         for (let i in this.coords) {
             this.coords[i].addClass('solved').addClass(this.solveClass);
         }

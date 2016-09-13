@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server",
-    "server": "webpack && nodemon server.js",
+    "server": "webpack -p && nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -56,6 +56,7 @@
     "normalize.css": "^4.2.0",
     "passport": "^0.2.2",
     "passport-github": "^1.1.0",
+    "passport-google-oauth": "^1.0.0",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-router": "^2.7.0"

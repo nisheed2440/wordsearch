@@ -1,1 +1,28 @@
-  <a href="/login/github" id="github-login">Login with github</a>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+  <% include ./partials/header %>
+</head>
+
+<body>
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <% if (!user) { %>
+    <p>Welcome! Please <a href="/login">log in</a>.</p>
+    <% } else { %>
+    <p>Hello,
+      <%= user.displayName || user.username%>. View the <a href="/leaderboard">leaderboard</a>.</p>
+    <% } %>
+
+    <a href="/login/github" id="github-login">Login with github</a>
+    <a href="/login/google" id="google-login">Login with google</a>
+</body>
+</html>
