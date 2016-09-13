@@ -70,7 +70,7 @@ app.use(require('body-parser').urlencoded({
 app.use(require('express-session')({
   secret: 'keyboard cat',
   cookie: {
-    maxAge: 86400
+    maxAge: 86400000
   },
   resave: true,
   saveUninitialized: true
