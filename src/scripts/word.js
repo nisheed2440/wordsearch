@@ -102,7 +102,7 @@ export default class Word {
                 if (item.find(".letter").html() != c && item.hasClass('used')) valid = false;
             }
             if (timeout++ > 1000) {
-                console.log(`!! Can't fit ${this.content}`);
+                //console.log(`!! Can't fit ${this.content}`);
                 $(this.gridEl).trigger('cfc');//cannot fit content event
                 return false;
             }

@@ -1,0 +1,140 @@
+.game {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.game-header,
+.game-footer {
+    height: 40px;
+    flex-shrink: 0;
+    display: flex;
+}
+
+.game-body {
+    background-color: #FFF;
+    display: flex;
+    justify-content: center;
+}
+
+.game-header {
+    position: relative;
+    overflow: hidden;
+    padding:0 15px;
+    line-height: 40px;
+    flex-wrap: wrap;
+    .game-timer {
+        @include font-sans-light;
+        font-size: 16px;
+        color: #fff;
+        text-align: right;
+        background: url('../assets/clock.png') transparent no-repeat left center;
+        padding-left: 20px;
+    }
+    .game-user {
+        @include font-sans-light;
+        font-size: 16px;
+        color: #fff;
+        vertical-align: middle;
+        padding-right: 15px;
+        @extend .truncate;
+        text-transform: capitalize;
+    }
+}
+
+.container {
+    text-align: center;
+    padding-top: 5px;
+    overflow: auto;
+}
+
+#frame {
+    border: 1px solid #AFAFAF;
+    display: inline-block;
+}
+
+.grid-item {
+    text-align: center;
+    float: left;
+    height: 28px;
+    width: 28px;
+    border:1px solid #AFAFAF;
+    background-color: #FFF;
+    color: #d72d2e;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.letter {
+    @include font-sans-medium;
+}
+
+.anchor {
+    clear: both;
+}
+
+.noselect {
+    user-select: none;
+}
+
+.grid-item.selected {
+    background-color: #FFFFFF;
+    border: 1px dotted black;
+}
+
+.highlighted {
+    background-color: #FFFFEF;
+    border: 1px solid #F00;
+    cursor: pointer;
+}
+
+.show {
+    color: red;
+}
+
+.grid-item.solved.h {
+    //background-image: url(hl-h.png);
+    background-position: center center;
+}
+
+.grid-item.solved.v {
+    //background-image: url(hl-v.png);
+    background-position: center center;
+}
+
+.grid-item.solved.da {
+    //background-image: url(hl-da.png);
+    background-position: center center;
+}
+
+.grid-item.solved.dd {
+    //background-image: url(hl-dd.png);
+    background-position: center center;
+}
+
+.grid-item.solved {
+    color: white;
+    background-color: #d72d2e;
+}
+
+.grid-submit {
+    @include font-sans-light;
+    color: white;
+    background: #d72d2e;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 5px;
+    letter-spacing: 1px;
+    &:disabled{
+        background: #cccccc;
+    }
+}
+
+.loading {
+    background-image: url("../assets/loader.gif");
+    background-position: center center;
+    background-repeat: no-repeat;
+    border:none !important;
+}
