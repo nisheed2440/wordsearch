@@ -198,6 +198,8 @@ export default class WordSearch {
             let encWordsSolved = encrypt(Object.keys(wordsSolved).length.toString(), cypher);
             //Ajax to the backend goes here 
             console.log(encWordsAdded, encWordsSolved, this.startTime, (new Date()).getTime() /* End Time */ );
+            //On Ajax success redirect
+            window.location.href = '/final';
         } else {
             alert('You need to solve at least five words before submitting');
         }
