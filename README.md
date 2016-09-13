@@ -5,6 +5,16 @@ Install depenencies
 npm install
 ```
 
+Run the node server
+```
+npm run server
+```
+
+View the output
+```
+http://localhost:3000
+```
+
 Run webpack to generate output files
 ```
 npm run build
