@@ -16,6 +16,25 @@
         flex-shrink: 0;
         text-align: center;
     }
+    h3 {
+        font-family: 'SapientSansMedium';
+        font-size: 14px;
+        line-height: 1;
+        text-transform: uppercase;
+        color: darken(#d72d2e, 15%);
+        text-shadow: 0px 1px 0px rgba(255, 255, 255, .2);
+        font-weight: normal;
+        margin: 10px auto;
+        letter-spacing: 1px;
+        flex-shrink: 0;
+        text-align: center;
+        a {
+            text-decoration: dotted;
+            color: #FFF;
+            display: inline-block;
+            text-decoration: none;
+        }
+    }
 }
 
 .login-logo {
@@ -23,8 +42,8 @@
     height: 79px;
     background: url('../assets/logo.png') transparent no-repeat center center;
     flex-shrink: 0;
-    &.final{
-         margin-bottom: 65px;
+    &.final {
+        margin-bottom: 65px;
     }
 }
 
@@ -32,7 +51,7 @@
     text-align: center;
     flex-shrink: 0;
     margin-bottom: 65px;
-    &.final{
+    &.final {
         margin-bottom: 30px;
     }
 }

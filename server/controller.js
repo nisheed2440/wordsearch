@@ -1,5 +1,6 @@
 var AES = require('crypto-js/aes');
 var SHA1 = require('crypto-js/sha1');
+var MobileDetect = require('mobile-detect');
 var mongoModel = require('./model.js');
 var userModel = mongoModel.user;
 
@@ -59,6 +60,19 @@ function encryptWordList() {
   return encryptedList;
 }
 
+function checkForDesktop(req, res, next) {
+  // check to see if the caller is a mobile device
+  var  md = new MobileDetect(req.headers['user-agent']);
+
+  if (!md.mobile()) {
+    console.log("Desktop Page");
+    res.redirect('/desktop');
+  } else {
+    // if we didn't detect desktop, call the next method, which will eventually call the desktop route
+    return next();
+  }
+}
+
 module.exports.pushUser = function(req, cb, profile) {
   var user = new userModel({
     name: req.name,
@@ -85,3 +99,4 @@ module.exports.pushUser = function(req, cb, profile) {
 module.exports.cypher = cypher;
 module.exports.encrypt = encrypt;
 module.exports.wordlist = encryptWordList();
+module.exports.checkForDesktop = checkForDesktop;

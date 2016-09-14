@@ -82,26 +82,26 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Define routes.
-app.get('/',
-  function(req, res) {
-    console.log(req.user);
-    res.render('home', {
-      user: req.user,
-      words: serverController.wordlist
-    });
-  });
+app.get('/desktop', function(req, res) {
+  res.render('desktop', {});
+});
 
-app.get('/login',
-  function(req, res) {
-    res.render('login', {
-      user: req.user
-    });
+app.get('/', serverController.checkForDesktop, function(req, res) {
+  res.render('home', {
+    user: req.user,
+    words: serverController.wordlist
   });
+});
 
-app.get('/final',
-  function(req, res) {
-    res.render('final', {});
+app.get('/login', serverController.checkForDesktop, function(req, res) {
+  res.render('login', {
+    user: req.user
   });
+});
+
+app.get('/final', serverController.checkForDesktop, function(req, res) {
+  res.render('final', {});
+});
 
 app.get('/login/github',
   passport.authenticate('github'));
@@ -130,7 +130,7 @@ app.get('/login/google/return',
 //Server static build files
 app.use(express.static('build'));
 
-app.get('/leaderboard', function(req, res) {
+app.get('/leaderboard', serverController.checkForDesktop, function(req, res) {
   if (req.user) {
     res.render('leaderboard', {
       user: req.user

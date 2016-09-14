@@ -194,6 +194,13 @@ export default class WordSearch {
     onGridSubmit(evt) {
         evt.preventDefault();
         if (!evt.target.disabled) {
+            let confirmation;
+            if (wordsAdded > 5) {
+                confirmation = window.confirm('There are more words to be found. Are you sure you want to submit?');
+                if(confirmation !== true){
+                    return;
+                }
+            }
             let encWordsAdded = encrypt(wordsAdded.toString(), cypher);
             let encWordsSolved = encrypt(Object.keys(wordsSolved).length.toString(), cypher);
             //Ajax to the backend goes here 
@@ -202,6 +209,7 @@ export default class WordSearch {
             window.location.href = '/final';
         } else {
             alert('You need to solve at least five words before submitting');
+            return;
         }
     }
     startTimer() {
