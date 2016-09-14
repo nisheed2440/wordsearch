@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var autoprefixer = require('autoprefixer');
+var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 module.exports = {
     // configuration
@@ -38,11 +39,14 @@ module.exports = {
             }
         }]
     },
-    postcss: function () {
+    postcss: function() {
         return [autoprefixer];
     },
     plugins: [
         new ExtractTextPlugin("bundle.css"),
-        new webpack.optimize.CommonsChunkPlugin( /* chunkName= */ "vendor", /* filename= */ "bundle.vendor.js")
+        new webpack.optimize.CommonsChunkPlugin( /* chunkName= */ "vendor", /* filename= */ "bundle.vendor.js"),
+        new SWPrecacheWebpackPlugin({
+            cacheId: 'sapientnitro-js-jargons'
+        })
     ]
 };
