@@ -25,33 +25,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="leader-0">
-                        <td>this is a loong name</td>
-                        <td>00:00:00</td>
-                        <td>100%</td>
+                    <%
+                        users.forEach(function(user, index){
+                    %>
+                    <tr class="leader-<%= index %>">
+                        <td><%= user.name %></td>
+                        <td><%= user.duration %></td>
+                        <td><%= user.score %></td>
                     </tr>
-                    <tr class="leader-1">
-                        <td>this is a loong name</td>
-                        <td>00:00:00</td>
-                        <td>100%</td>
-                    </tr>
-                    <tr class="leader-2">
-                        <td>this is a loong name</td>
-                        <td>00:00:00</td>
-                        <td>100%</td>
-                    </tr>
-                    <tr class="leader-3">
-                        <td>this is a loong name</td>
-                        <td>00:00:00</td>
-                        <td>100%</td>
-                    </tr>
+                    <%
+                        })
+                    %>
                 </tbody>
             </table>
         </div>
     </div>
     <script>
         window.setInterval(function(){
-            window.location.reload();   
+            window.location.reload();
         },30000);
     </script>
 </body>

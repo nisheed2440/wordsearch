@@ -10,4 +10,15 @@ var userSchema = new mongoose.Schema(
   }
 );
 
-module.exports.user = mongoose.model('User', userSchema)
+var scoreSchema = new mongoose.Schema(
+    {
+        username: String,
+        wordsAvailable: Number,
+        wordsSolved: Number,
+        score: Number,
+        started: Date,
+        submitted: Date
+    }
+);
+module.exports.user = mongoose.model('User', userSchema);
+module.exports.score = mongoose.model('Score', scoreSchema);
