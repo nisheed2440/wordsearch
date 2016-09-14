@@ -36,17 +36,22 @@
     </div>
     <% include ./partials/footer %>
     <% } else { %>
+        <div class="logo"></div>
         <div class="login">
             <div class="flex"></div>
             <div class="login-logo"></div>
-            <div class="flex"></div>
-            <h1>Please login</h1>
+            <p>Find as many JS jargons<br>you can in the gird</p>
             <div class="flex"></div>
             <div class="login-btn">
                 <div>
                     <a href="/login" class="login-btn-play">Login to<br/>Play</a>
                 </div>
+                 <div>
+                    <a href="/leaderboard" class="login-btn-play">View the<br/>Leaderboard</a>
+                </div>
             </div>
+            <div class="flex"></div>
+            <h3>Join our: <a href="http://www.hackerearth.com/sapient-nitro-frontend-hiring-challenge" class="pulse animated infinite">hackathon</a></h3>
         </div<    
     <% } %>
 </body>

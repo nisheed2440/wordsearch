@@ -20,15 +20,15 @@
     <div class="login">
         <div class="flex"></div>
         <div class="login-logo"></div>
-        <div class="flex"></div>
+        <p>Find as many JS jargons<br>you can in the gird</p>
         <h1>Enter the spot</h1>
         <div class="login-btn">
         <% if (!user) { %>
             <div>
-                <a href="/login/google" class="login-btn-google">Sign up with Google</a>
+                <a href="/login/google" class="login-btn-google">Sign In with Google</a>
             </div>
             <div>
-                <a href="/login/github" class="login-btn-github">Sign up with Github</a>
+                <a href="/login/github" class="login-btn-github">Sign In with Github</a>
             </div>
         <% } else { %>
           <div>
@@ -40,11 +40,7 @@
         <% } %>
         </div>
         <div class="flex"></div>
-        <div class="login-btn">
-            <div>
-                <a href="http://www.hackerearth.com/sapient-nitro-frontend-hiring-challenge" class="login-btn-play">Join our<br/>hackathon</a>
-            </div>
-        </div>
+         <h3>Join our: <a href="http://www.hackerearth.com/sapient-nitro-frontend-hiring-challenge" class="pulse animated infinite">hackathon</a></h3>
     </div>
 </body>
 </html>

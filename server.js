@@ -129,6 +129,7 @@ app.get('/login/google/return',
 
 //Server static build files
 app.use(express.static('build'));
+app.use('/assets',express.static('src/assets'));
 
 app.get('/leaderboard', serverController.checkForDesktop, function(req, res) {
   res.render('leaderboard', {

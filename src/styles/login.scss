@@ -3,21 +3,21 @@
     flex-direction: column;
     flex: 1;
     align-items: center;
-    padding-top: 50px;
     h1 {
-        font-family: 'SapientSansLight';
+        @include font-sans-medium;
         font-size: 24px;
         line-height: 1;
         text-transform: uppercase;
         color: #FFF;
         font-weight: normal;
-        margin: 50px auto;
+        margin: 30px auto;
+        padding: 10px;
         letter-spacing: 1px;
         flex-shrink: 0;
         text-align: center;
     }
     h3 {
-        font-family: 'SapientSansMedium';
+        @include font-sans-medium;
         font-size: 14px;
         line-height: 1;
         text-transform: uppercase;
@@ -35,8 +35,15 @@
             text-decoration: none;
         }
     }
-    &.final{
-        padding-top: 0;
+
+    p{
+        @include font-sans-medium;
+        font-size: 12px;
+        padding: 0 30px;
+        margin: 10px 0;
+        color: #FFF;
+        text-transform: uppercase;
+        text-align: center;
     }
 }
 
@@ -50,10 +57,6 @@
 .login-btn {
     text-align: center;
     flex-shrink: 0;
-    margin-bottom: 65px;
-    &.final {
-        margin-bottom: 30px;
-    }
 }
 
 .login-btn-github,
