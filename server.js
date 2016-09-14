@@ -140,7 +140,7 @@ app.post('/submit', function(req, res){
   //Add data to the object and push to db then send 200 ok
   if(req.user) {
     	var obj = {
-            user: req.user.username,
+            user: req.user.username || req.user.displayName,
             wA: serverController.decrypt(req.body.eWA, serverController.cypher()),
             wS: serverController.decrypt(req.body.eWS, serverController.cypher()),
             sT: req.body.sT,
