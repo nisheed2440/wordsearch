@@ -84,6 +84,7 @@ app.use(passport.session());
 // Define routes.
 app.get('/',
   function(req, res) {
+    console.log(req.user);
     if (!req.user) {
       res.redirect('/login');
     }

@@ -4,9 +4,9 @@
   "description": "The JS jargons game for JSFoo",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack -p",
     "dev": "webpack-dev-server",
-    "server": "webpack -p && nodemon server.js",
+    "server": "npm run build && nodemon server.js",
     "prod": "git pull && webpack -p && node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
