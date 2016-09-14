@@ -1,0 +1,19 @@
+﻿/* TEAM */
+
+Developer: Shafeeq Ur Rahman
+Twitter: @shafeeqonline
+From:Bangalore, INDIA.
+
+Developer: Nisheed Jagadeesh
+Twitter: @NisheedDroid
+From:Bangalore, INDIA.
+
+Developer: Anup Mankar
+Twitter: @anupmankar
+From:Bangalore, INDIA.
+
+
+/* SITE */
+	Last update:15/109/2016
+	Language: English
+	Doctype:HTML5
