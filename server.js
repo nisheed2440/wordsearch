@@ -77,6 +77,13 @@ function(req, res) {
   res.redirect('/');
 });
 
+app.get('/score/:username/:score',function(req,res){
+    serverController.submitScore({
+        name: req.params.username,
+        score: req.params.score
+    }, res);
+});
+
 // show the leaderboard
 app.get('/leaderboard',function(req,res){
     serverController.showLeaderBoard(req, res);

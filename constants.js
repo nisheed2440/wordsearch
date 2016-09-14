@@ -1,6 +1,7 @@
 module.exports = {
   mongodbUrl: "mongodb://localhost:27017/jsjargons",
-  githubClientId: "e1b7f3ef0671cfb26588",
-  githubClientSecret: "fcf94dfc0c3e07b49bd14759fa4fc90ea216f686",
-  passportCallbackUrl: "http://localhost:3000/login/github/return"
+  githubClientId: "274ad1274727ebad7dd1",
+  githubClientSecret: "c79cf4559238e66c4be66d7e5bb261f3859414b7",
+  passportCallbackUrl: "http://localhost:3000/login/github/return",
+  minScore: 15
 }
