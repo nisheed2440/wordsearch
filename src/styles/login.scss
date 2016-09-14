@@ -35,6 +35,9 @@
             text-decoration: none;
         }
     }
+    &.final{
+        padding-top: 0;
+    }
 }
 
 .login-logo {
@@ -42,9 +45,6 @@
     height: 79px;
     background: url('../assets/logo.png') transparent no-repeat center center;
     flex-shrink: 0;
-    &.final {
-        margin-bottom: 65px;
-    }
 }
 
 .login-btn {
