@@ -15,6 +15,17 @@ body {
   //background: #d72d2e;
 }
 
+div.logo{
+  position:fixed;
+  width: 40px;
+  height: 40px;
+  top:0;
+  left:30px;
+  z-index: 999;
+  background: url('../assets/sn-logo.png') #d72d2e no-repeat center center;
+  @extend .z-depth-1;
+}
+
 body * {
   box-sizing: border-box;
 }
