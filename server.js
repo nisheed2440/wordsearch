@@ -118,6 +118,10 @@ app.get('/login/google/return', passport.authenticate('google', {
 app.use(express.static('build'));
 app.use('/assets',express.static('src/assets'));
 
+app.get('/leaderboard', serverController.checkForDesktop, function(req, res) {
+	serverController.showLeaderBoard(req, res);
+});
+
 //Makes sure that user is logged in for all routes
 app.use(require('connect-ensure-login').ensureLoggedIn());
 
@@ -126,10 +130,6 @@ app.get('/', serverController.checkForDesktop, function(req, res) {
 		user: req.user,
 		words: serverController.wordlist
 	});
-});
-
-app.get('/leaderboard', serverController.checkForDesktop, function(req, res) {
-	serverController.showLeaderBoard(req, res);
 });
 
 //Ajax submit endpoint
