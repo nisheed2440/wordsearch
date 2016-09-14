@@ -132,17 +132,25 @@ app.use(express.static('build'));
 app.use('/assets',express.static('src/assets'));
 
 app.get('/leaderboard', serverController.checkForDesktop, function(req, res) {
-  res.render('leaderboard', {
-    user: req.user
-  });
+    serverController.showLeaderBoard(req, res);
 });
 
 //Ajax submit endpoint
 app.post('/submit', function(req, res){
   //Add data to the object and push to db then send 200 ok
-	var obj = {};
-  console.log('req body: ' + JSON.stringify(req.body));
-	res.send({});
+  if(req.user) {
+    	var obj = {
+            user: req.user.username,
+            wA: serverController.decrypt(req.body.eWA, serverController.cypher()),
+            wS: serverController.decrypt(req.body.eWS, serverController.cypher()),
+            sT: req.body.sT,
+            eT: req.body.eT
+        };
+        serverController.submitScore(obj);
+    	res.send({});
+    } else {
+        res.redirect('/login');
+    }
 });
 
 app.listen(3000);

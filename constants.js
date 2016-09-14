@@ -5,5 +5,6 @@ module.exports = {
   passportCallbackUrl: "http://jsjargons.com/login/github/return",
   googleClientId:"579599640247-pbkslm57n79inlc92c4usd1v2422gif3.apps.googleusercontent.com",
   googleClientSecret:"R6OYkKNiOdvaZm-0YeWpfjO1",
-  googleCallbackUrl:"http://jsjargons.com/login/google/return"
+  googleCallbackUrl:"http://jsjargons.com/login/google/return",
+  minScore: 25
 }
