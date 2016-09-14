@@ -12,38 +12,38 @@ mongoose.connect(constants.mongodbUrl);
 
 // Use the GithubStrategy within Passport.
 passport.use(new GitHubStrategy({
-    clientID: constants.githubClientId,
-    clientSecret: constants.githubClientSecret,
-    callbackURL: constants.passportCallbackUrl
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    var userJson = profile._json;
-    serverController.pushUser({
-      githubId: userJson.id,
-      username: userJson.login,
-      name: userJson.name,
-      email: userJson.email,
-      gravatar: userJson.avatar_url
-    }, cb, profile);
-  }));
+  clientID: constants.githubClientId,
+  clientSecret: constants.githubClientSecret,
+  callbackURL: constants.passportCallbackUrl
+},
+function(accessToken, refreshToken, profile, cb) {
+  var userJson = profile._json;
+  serverController.pushUser({
+    githubId: userJson.id,
+    username: userJson.login,
+    name: userJson.name,
+    email: userJson.email,
+    gravatar: userJson.avatar_url
+  }, cb, profile);
+}));
 
 // Use the GoogleStrategy within Passport.
 passport.use(new GoogleStrategy({
-    clientID: constants.googleClientId,
-    clientSecret: constants.googleClientSecret,
-    callbackURL: constants.googleCallbackUrl
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    var userJson = profile._json;
-    console.log(userJson);
-    serverController.pushUser({
-      githubId: '',
-      username: userJson.displayName.split(' ').join(''),
-      name: userJson.displayName,
-      email: userJson.emails[0].value,
-      gravatar: userJson.image.url
-    }, cb, profile);
-  }
+  clientID: constants.googleClientId,
+  clientSecret: constants.googleClientSecret,
+  callbackURL: constants.googleCallbackUrl
+},
+function(accessToken, refreshToken, profile, cb) {
+  var userJson = profile._json;
+  console.log(userJson);
+  serverController.pushUser({
+    githubId: '',
+    username: userJson.displayName.split(' ').join(''),
+    name: userJson.displayName,
+    email: userJson.emails[0].value,
+    gravatar: userJson.image.url
+  }, cb, profile);
+}
 ));
 
 passport.serializeUser(function(user, cb) {
@@ -86,13 +86,6 @@ app.get('/desktop', function(req, res) {
   res.render('desktop', {});
 });
 
-app.get('/', serverController.checkForDesktop, function(req, res) {
-  res.render('home', {
-    user: req.user,
-    words: serverController.wordlist
-  });
-});
-
 app.get('/login', serverController.checkForDesktop, function(req, res) {
   res.render('login', {
     user: req.user
@@ -104,53 +97,63 @@ app.get('/final', serverController.checkForDesktop, function(req, res) {
 });
 
 app.get('/login/github',
-  passport.authenticate('github'));
+passport.authenticate('github'));
 
 app.get('/login/google',
-  passport.authenticate('google', {
-    scope: ['profile', 'email']
-  }));
+passport.authenticate('google', {
+  scope: ['profile', 'email']
+}));
 
 app.get('/login/github/return',
-  passport.authenticate('github', {
-    failureRedirect: '/'
-  }),
-  function(req, res) {
-    res.redirect('/');
-  });
+passport.authenticate('github', {
+  failureRedirect: '/'
+}),
+function(req, res) {
+  res.redirect('/');
+});
 
 app.get('/login/google/return',
-  passport.authenticate('google', {
-    failureRedirect: '/'
-  }),
-  function(req, res) {
-    res.redirect('/');
-  });
+passport.authenticate('google', {
+  failureRedirect: '/'
+}),
+function(req, res) {
+  res.redirect('/');
+});
 
 //Server static build files
 app.use(express.static('build'));
 app.use('/assets',express.static('src/assets'));
 
+//Makes sure that user is logged in for all routes
+app.use(require('connect-ensure-login').ensureLoggedIn());
+
+app.get('/', serverController.checkForDesktop, function(req, res) {
+  res.render('home', {
+    user: req.user,
+    words: serverController.wordlist
+  });
+});
+
 app.get('/leaderboard', serverController.checkForDesktop, function(req, res) {
-    serverController.showLeaderBoard(req, res);
+  serverController.showLeaderBoard(req, res);
 });
 
 //Ajax submit endpoint
 app.post('/submit', function(req, res){
   //Add data to the object and push to db then send 200 ok
   if(req.user) {
-    	var obj = {
-            user: req.user.username,
-            wA: serverController.decrypt(req.body.eWA, serverController.cypher()),
-            wS: serverController.decrypt(req.body.eWS, serverController.cypher()),
-            sT: req.body.sT,
-            eT: req.body.eT
-        };
-        serverController.submitScore(obj);
-    	res.send({});
-    } else {
-        res.redirect('/login');
-    }
+    var obj = {
+      user: req.user.username,
+      wA: serverController.decrypt(req.body.eWA, serverController.cypher()),
+      wS: serverController.decrypt(req.body.eWS, serverController.cypher()),
+      sT: req.body.sT,
+      eT: req.body.eT
+    };
+    serverController.submitScore(obj);
+    res.send({});
+  } else {
+    res.redirect('/login');
+  }
 });
 
 app.listen(3000);
