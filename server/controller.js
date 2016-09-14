@@ -141,7 +141,7 @@ module.exports.showLeaderBoard = function(req, res) {
                 'stats.score': -1,
                 'stats.duration': 1
             }
-        },
+        }/*,
         {
     		$lookup: {
     			from: 'users',
@@ -150,7 +150,7 @@ module.exports.showLeaderBoard = function(req, res) {
     			as: 'info'
 
     		}
-    	}
+    	}*/
     ], function(err, docs) {
         if (err) {
             console.log(err);
@@ -159,18 +159,19 @@ module.exports.showLeaderBoard = function(req, res) {
             var leaders = docs.map(function(doc, index){
                 var t = moment.duration(doc.stats.duration, 'milliseconds');
                 var ret = {
+                    name: doc._id,
                     score: doc.stats.score.toFixed(2) + '%',
                     duration: moment.utc(doc.stats.duration).format("HH:mm:ss")
                 }
-                if(doc.info.length) {
+                /*if(doc.info.length) {
                     ret['name'] = doc.info[0].name || doc.info[0].username;
-                    // /ret['username'] = doc.info[0].username;
+                    //ret['username'] = doc.info[0].username;
                     ret['gravatar'] = doc.info[0].gravatar;
                 } else {
                     ret['name'] = '';
                     ret['username'] = '';
                     ret['gravatar'] = '';
-                }
+                }*/
                 return ret;
             });
             console.log(leaders);
