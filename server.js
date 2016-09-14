@@ -92,10 +92,6 @@ app.get('/login', serverController.checkForDesktop, function(req, res) {
 	});
 });
 
-app.get('/final', serverController.checkForDesktop, function(req, res) {
-	res.render('final', {});
-});
-
 app.get('/login/github', passport.authenticate('github'));
 
 app.get('/login/google',passport.authenticate('google', {
@@ -130,6 +126,10 @@ app.get('/', serverController.checkForDesktop, function(req, res) {
 		user: req.user,
 		words: serverController.wordlist
 	});
+});
+
+app.get('/final', serverController.checkForDesktop, function(req, res) {
+	res.render('final', {});
 });
 
 //Ajax submit endpoint
