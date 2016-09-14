@@ -1,1 +1,59 @@
-<div>You leaderboard</div><p> <%= user.username %>.</p>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <% include ./partials/header %>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+      <div class="leaderboard">
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>username</th>
+                        <th>time taken</th>
+                        <th>score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="leader-0">
+                        <td>this is a loong name</td>
+                        <td>00:00:00</td>
+                        <td>100%</td>
+                    </tr>
+                    <tr class="leader-1">
+                        <td>this is a loong name</td>
+                        <td>00:00:00</td>
+                        <td>100%</td>
+                    </tr>
+                    <tr class="leader-2">
+                        <td>this is a loong name</td>
+                        <td>00:00:00</td>
+                        <td>100%</td>
+                    </tr>
+                    <tr class="leader-3">
+                        <td>this is a loong name</td>
+                        <td>00:00:00</td>
+                        <td>100%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        window.setInterval(function(){
+            window.location.reload();   
+        },30000);
+    </script>
+</body>
+
+</html>

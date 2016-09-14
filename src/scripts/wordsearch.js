@@ -197,16 +197,27 @@ export default class WordSearch {
             let confirmation;
             if (wordsAdded > 5) {
                 confirmation = window.confirm('There are more words to be found. Are you sure you want to submit?');
-                if(confirmation !== true){
+                if (confirmation !== true) {
                     return;
                 }
             }
             let encWordsAdded = encrypt(wordsAdded.toString(), cypher);
             let encWordsSolved = encrypt(Object.keys(wordsSolved).length.toString(), cypher);
             //Ajax to the backend goes here 
-            console.log(encWordsAdded, encWordsSolved, this.startTime, (new Date()).getTime() /* End Time */ );
-            //On Ajax success redirect
-            window.location.href = '/final';
+            //console.log(encWordsAdded, encWordsSolved, this.startTime, (new Date()).getTime() /* End Time */ );
+            $.post("/submit", {
+                    eWA: encWordsAdded,
+                    eWS: encWordsSolved,
+                    sT: this.startTime,
+                    eT: (new Date()).getTime()
+                })
+                .done(function() {
+                    //On Ajax success redirect
+                    window.location.href = '/final';
+                })
+                .fail(function() {
+                    alert("An error occured! Please try submitting again.");
+                });
         } else {
             alert('You need to solve at least five words before submitting');
             return;

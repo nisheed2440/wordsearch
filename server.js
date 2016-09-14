@@ -131,14 +131,18 @@ app.get('/login/google/return',
 app.use(express.static('build'));
 
 app.get('/leaderboard', serverController.checkForDesktop, function(req, res) {
-  if (req.user) {
-    res.render('leaderboard', {
-      user: req.user
-    });
-  } else {
-    res.redirect('/login');
-  }
-})
+  res.render('leaderboard', {
+    user: req.user
+  });
+});
+
+//Ajax submit endpoint
+app.post('/submit', function(req, res){
+  //Add data to the object and push to db then send 200 ok
+	var obj = {};
+  console.log('req body: ' + JSON.stringify(req.body));
+	res.send({});
+});
 
 app.listen(3000);
 console.log("Application running on port 3000");
