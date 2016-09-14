@@ -5,21 +5,20 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Foo Search</title>
+    <title>JSJargons|Game</title>
     <meta name="description" content="">
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="/bundle.css" type="text/css" rel="stylesheet">
+    <% include ./partials/header %>
 </head>
 
 <body>
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    <% if (user) { %>
     <script type="text/javascript">
-    var wordsearch = <%- JSON.stringify(words) %>;
+        var wordsearch = <%- JSON.stringify(words) %>;
     </script>
     <div class="game">
         <div class="game-header">
@@ -35,8 +34,21 @@
         </div>
         <div class="game-footer"></div>
     </div>
-    <script src="/bundle.vendor.js"></script>
-    <script src="/bundle.app.js"></script>
+    <% include ./partials/footer %>
+    <% } else { %>
+        <div class="login">
+            <div class="flex"></div>
+            <div class="login-logo"></div>
+            <div class="flex"></div>
+            <h1>Please login</h1>
+            <div class="flex"></div>
+            <div class="login-btn">
+                <div>
+                    <a href="/login" class="login-btn-play">Login to<br/>Play</a>
+                </div>
+            </div>
+        </div<    
+    <% } %>
 </body>
 
 </html>

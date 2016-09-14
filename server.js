@@ -85,9 +85,6 @@ app.use(passport.session());
 app.get('/',
   function(req, res) {
     console.log(req.user);
-    if (!req.user) {
-      res.redirect('/login');
-    }
     res.render('home', {
       user: req.user,
       words: serverController.wordlist
@@ -100,7 +97,7 @@ app.get('/login',
       user: req.user
     });
   });
-  
+
 app.get('/final',
   function(req, res) {
     res.render('final', {});
