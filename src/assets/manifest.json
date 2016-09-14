@@ -1,0 +1,25 @@
+{
+  "lang": "en",
+  "dir": "ltr",
+  "name": "SapientNitro JS Jargons",
+  "description": "The cool game where you search for JS jargons.",
+  "short_name": "JSJargons",
+  "icons": [{
+    "src": "assets/Logo-60x60px.png",
+    "sizes": "60x60"
+  },{
+    "src": "assets/Logo-76x76px.png",
+    "sizes": "76x76"
+  }, {
+    "src": "assets/Logo-120x120px.png",
+    "sizes": "120x120"
+  },{
+    "src": "assets/Logo-152x152px.png",
+    "sizes": "152x152"
+  }],
+  "start_url": "/",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "theme_color": "#d72d2e",
+  "background_color": "white"
+}
