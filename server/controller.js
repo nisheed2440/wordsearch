@@ -148,17 +148,17 @@ module.exports.showLeaderBoard = function(req, res) {
                 'stats.score': -1,
                 'stats.duration': 1
             }
-        }
-        /*,
-                {
-            		$lookup: {
-            			from: 'users',
-            			localField: '_id',
-            			foreignField: 'username',
-            			as: 'info'
-
-            		}
-            	}*/
+        },{
+            $limit: 10
+        }/*,
+        {
+    		$lookup: {
+    			from: 'users',
+    			localField: '_id',
+    			foreignField: 'username',
+    			as: 'info'
+            	}
+        }*/
     ], function(err, docs) {
         if (err) {
             console.log(err);
