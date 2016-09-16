@@ -141,6 +141,8 @@ module.exports.showLeaderBoard = function(req, res) {
                 'stats.score': -1,
                 'stats.duration': 1
             }
+        },{
+            $limit: 10
         }/*,
         {
     		$lookup: {
