@@ -38,7 +38,6 @@ export default class WordSearch {
             wordsAdded--;
         });
         this.drawGrid();
-        this.startTime = (new Date()).getTime();
         this.startTimer();
         setTimeout(() => {
             this.placeWords();
@@ -195,7 +194,7 @@ export default class WordSearch {
         evt.preventDefault();
         if (!evt.target.disabled) {
             let confirmation;
-            if (wordsAdded > 5) {
+            if (wordsAdded > 5 && Object.keys(wordsSolved).length < wordsAdded) {
                 confirmation = window.confirm('There are more words to be found. Are you sure you want to submit?');
                 if (confirmation !== true) {
                     return;
@@ -203,13 +202,11 @@ export default class WordSearch {
             }
             let encWordsAdded = encrypt(wordsAdded.toString(), cypher);
             let encWordsSolved = encrypt(Object.keys(wordsSolved).length.toString(), cypher);
-            //Ajax to the backend goes here 
-            //console.log(encWordsAdded, encWordsSolved, this.startTime, (new Date()).getTime() /* End Time */ );
+            //Ajax to the backend goes here2
             $.post("/submit", {
                     eWA: encWordsAdded,
                     eWS: encWordsSolved,
-                    sT: this.startTime,
-                    eT: (new Date()).getTime()
+                    sT: cypher,
                 })
                 .done(function() {
                     //On Ajax success redirect

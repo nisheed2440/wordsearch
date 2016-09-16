@@ -23,16 +23,16 @@ function isMobile() {
 
 function encrypt(word, cypher) {
     if (typeof word === 'string') {
-        word = AES.encrypt(word, cypher).toString();
+        return word = AES.encrypt(word, cypher).toString();
     }
-    return word;
+    return null;
 }
 
 function decrypt(word, cypher) {
     if (typeof word === 'string') {
-        word = AES.decrypt(word, cypher).toString(UTF8);
+        return word = AES.decrypt(word, cypher).toString(UTF8);
     }
-    return word;
+    return null;
 }
 //make letter
 function ml(letter) {

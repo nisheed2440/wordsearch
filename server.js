@@ -124,7 +124,7 @@ app.use(require('connect-ensure-login').ensureLoggedIn());
 app.get('/', serverController.checkForDesktop, function(req, res) {
 	res.render('home', {
 		user: req.user,
-		words: serverController.wordlist
+		words: serverController.getEncWordlist((new Date()).getTime().toString())
 	});
 });
 
@@ -138,11 +138,12 @@ app.post('/submit', function(req, res){
 	if(req.user) {
 		var obj = {
 			user: req.user.username || req.user.displayName,
-			wA: serverController.decrypt(req.body.eWA, serverController.cypher()),
-			wS: serverController.decrypt(req.body.eWS, serverController.cypher()),
-			sT: req.body.sT,
-			eT: req.body.eT
+			wA: serverController.decrypt(req.body.eWA, req.body.sT),
+			wS: serverController.decrypt(req.body.eWS, req.body.sT),
+			sT: Number(serverController.decrypt(req.body.sT, serverController.simpleCypher())),
+			eT: (new Date()).getTime()
 		};
+		console.log(JSON.stringify(obj));
 		serverController.submitScore(obj);
 		res.send({});
 	} else {

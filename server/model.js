@@ -16,8 +16,7 @@ var scoreSchema = new mongoose.Schema(
         wordsAvailable: Number,
         wordsSolved: Number,
         score: Number,
-        started: Date,
-        submitted: Date
+        duration:Number //milliseconds
     }
 );
 module.exports.user = mongoose.model('User', userSchema);
