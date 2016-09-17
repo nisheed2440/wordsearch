@@ -138,9 +138,9 @@ app.post('/submit', function(req, res){
 	if(req.user) {
 		var obj = {
 			user: req.user.username || req.user.displayName,
-			wA: serverController.decrypt(req.body.eWA, req.body.sT),
-			wS: serverController.decrypt(req.body.eWS, req.body.sT),
-			sT: Number(serverController.decrypt(req.body.sT, serverController.simpleCypher())),
+			wA: serverController.decrypt(req.body.a, req.body.c),
+			wS: serverController.decrypt(req.body.b, req.body.c),
+			sT: Number(serverController.decrypt(req.body.c, serverController.simpleCypher())),
 			eT: (new Date()).getTime()
 		};
 		console.log(JSON.stringify(obj));

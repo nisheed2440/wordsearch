@@ -204,9 +204,9 @@ export default class WordSearch {
             let encWordsSolved = encrypt(Object.keys(wordsSolved).length.toString(), cypher);
             //Ajax to the backend goes here2
             $.post("/submit", {
-                    eWA: encWordsAdded,
-                    eWS: encWordsSolved,
-                    sT: cypher,
+                    a: encWordsAdded,
+                    b: encWordsSolved,
+                    c: cypher,
                 })
                 .done(function() {
                     //On Ajax success redirect
