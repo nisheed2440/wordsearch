@@ -46,7 +46,7 @@ module.exports = {
         new ExtractTextPlugin("bundle.css"),
         new webpack.optimize.CommonsChunkPlugin( /* chunkName= */ "vendor", /* filename= */ "bundle.vendor.js"),
         new SWPrecacheWebpackPlugin({
-            cacheId: 'sapientnitro-js-jargons-5'
+            cacheId: 'sapientnitro-js-jargons-6'
         })
     ]
 };
