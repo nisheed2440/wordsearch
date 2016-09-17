@@ -4,11 +4,12 @@
   "description": "The JS jargons game for JSFoo",
   "main": "index.js",
   "scripts": {
-    "build": "webpack -p",
+    "build": "webpack",
     "dev": "webpack-dev-server",
-    "server": "npm run build && nodemon server.js",
-    "prod": "git pull && webpack -p && node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "npm run ob && nodemon server.js",
+    "prod": "git pull && npm run ob && node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ob": "webpack && gulp"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,9 @@
     "eslint": "^3.4.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
+    "gulp": "^3.9.1",
+    "gulp-js-obfuscator": "^1.0.0",
+    "gulp-obfuscate": "^0.2.9",
     "node-sass": "^3.9.3",
     "nodemon": "^1.10.2",
     "postcss-loader": "^0.13.0",
