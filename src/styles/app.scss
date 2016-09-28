@@ -103,3 +103,21 @@ body * {
   -webkit-animation-name: pulse;
   animation-name: pulse;
 }
+.busy-loader{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.8);
+    display: none;
+
+    .loading{
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+    }
+}

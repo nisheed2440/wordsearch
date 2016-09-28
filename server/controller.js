@@ -15,7 +15,7 @@ var wordlist = [
     "scope",
     "json",
     "ajax",
-    "svg",
+    //"svg",
     "functional",
     "canvas",
     "cookies",

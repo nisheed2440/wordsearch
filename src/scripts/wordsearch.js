@@ -172,8 +172,8 @@ export default class WordSearch {
             if (words[i].check() && words[i].valid && this.selection.dist === words[i].len) {
                 words[i].solve();
                 wordsSolved[words[i].id] = true;
-                //Minimum 5 words
-                if (Object.keys(wordsSolved).length >= 5) {
+                //Minimum 3 words
+                if (Object.keys(wordsSolved).length >= 3) {
                     document.querySelector('.grid-submit').disabled = false;
                 }
             }
@@ -194,12 +194,14 @@ export default class WordSearch {
         evt.preventDefault();
         if (!evt.target.disabled) {
             let confirmation;
-            if (wordsAdded > 5 && Object.keys(wordsSolved).length < wordsAdded) {
+            if (wordsAdded > 3 && Object.keys(wordsSolved).length < wordsAdded) {
                 confirmation = window.confirm('There are more words to be found. Are you sure you want to submit?');
                 if (confirmation !== true) {
                     return;
                 }
             }
+            //show loader
+            $('.busy-loader').show();
             let encWordsAdded = encrypt(wordsAdded.toString(), cypher);
             let encWordsSolved = encrypt(Object.keys(wordsSolved).length.toString(), cypher);
             //Ajax to the backend goes here2
@@ -213,10 +215,12 @@ export default class WordSearch {
                     window.location.href = '/final';
                 })
                 .fail(function() {
+                    //Hide loader if error
+                    $('.busy-loader').hide();
                     alert("An error occured! Please try submitting again.");
                 });
         } else {
-            alert('You need to solve at least five words before submitting');
+            alert('You need to solve at least three words before submitting');
             return;
         }
     }
